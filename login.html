@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UrStudBud – Login</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</head>
+<body class="bg-library">
+  <div class="page-login">
+    <nav class="navbar navbar-light">
+      <div class="logo">UrStudBud</div>
+      <button class="back-btn" id="back-btn">&#8630;</button>
+    </nav>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="input-group">
+          <label>ENTER EMAIL</label>
+          <input type="text" id="email-input" placeholder="you@example.com"/>
+        </div>
+        <div class="input-group">
+          <label>PASSWORD</label>
+          <input type="password" id="password-input" placeholder="••••••••"/>
+        </div>
+        <button class="social-btn google-btn" id="google-btn">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" width="18"/> Continue with Google
+        </button>
+        <button class="social-btn facebook-btn" id="facebook-btn">
+          <img src="https://www.svgrepo.com/show/452196/facebook-1.svg" alt="Facebook" width="18"/> Continue with Facebook
+        </button>
+        <button type="button" class="sign-in-btn" id="sign-in-btn">SIGN IN</button>
+        <p class="no-account">NO ACCOUNT YET? <a href="#" id="signup-link">SIGN UP</a></p>
+      </div>
+    </div>
+  </div>
+  <script>$(document).ready(function() { initLogin(); });</script>
+</body>
+</html>

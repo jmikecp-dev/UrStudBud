@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UrStudBud – My Learnings</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</head>
+<body>
+
+<div class="page-ml">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-rw">
+    <div class="logo">UrStudBud</div>
+    <button class="back-btn-rw" id="ml-back-btn">&#8630;</button>
+  </nav>
+
+  <!-- TITLE BAR -->
+  <div class="rw-title-bar">
+    <span class="rw-title-label">MY LEARNINGS</span>
+  </div>
+
+  <div class="ml-body">
+
+    <!-- Summary stats -->
+    <div class="ml-stats-row" id="ml-stats-row">
+      <div class="ml-stat-box">
+        <div class="ml-stat-num" id="ml-stat-sessions">0</div>
+        <div class="ml-stat-label">SESSIONS</div>
+      </div>
+      <div class="ml-stat-box">
+        <div class="ml-stat-num" id="ml-stat-methods">0</div>
+        <div class="ml-stat-label">METHODS USED</div>
+      </div>
+      <div class="ml-stat-box">
+        <div class="ml-stat-num" id="ml-stat-score">—</div>
+        <div class="ml-stat-label">AVG SCORE</div>
+      </div>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="ml-filter-tabs">
+      <button class="ml-tab active" data-filter="all">ALL</button>
+      <button class="ml-tab" data-filter="reading-writing">📖 R&W</button>
+      <button class="ml-tab" data-filter="practice-oriented">🏆 PRACTICE</button>
+      <button class="ml-tab" data-filter="focused-session">⏱ FOCUSED</button>
+      <button class="ml-tab" data-filter="spaced-repetition">🃏 SPACED</button>
+    </div>
+
+    <!-- History list -->
+    <div id="ml-history-list"></div>
+
+    <!-- Empty state -->
+    <div class="ml-empty" id="ml-empty" style="display:none;">
+      <div class="ml-empty-icon">📚</div>
+      <p class="ml-empty-title">No sessions yet!</p>
+      <p class="ml-empty-sub">Start studying using any method and your sessions will appear here.</p>
+      <button class="po-start-btn" id="ml-start-studying-btn">START STUDYING →</button>
+    </div>
+
+    <!-- Clear button -->
+    <div class="ml-clear-wrap" id="ml-clear-wrap" style="display:none;">
+      <button class="ml-clear-all-btn" id="ml-clear-all-btn">🗑 CLEAR ALL HISTORY</button>
+    </div>
+
+  </div>
+
+  <!-- ===== SESSION DETAIL MODAL ===== -->
+  <div class="ml-modal-overlay" id="ml-modal-overlay" style="display:none;">
+    <div class="ml-modal">
+      <div class="ml-modal-header">
+        <h3 class="ml-modal-title" id="ml-modal-title"></h3>
+        <button class="ml-modal-close" id="ml-modal-close">✕</button>
+      </div>
+      <div class="ml-modal-body" id="ml-modal-body"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>$(document).ready(function() { initMyLearnings(); });</script>
+</body>
+</html>
