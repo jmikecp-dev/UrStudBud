@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UrStudBud – Reading & Writing</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</head>
+<body>
+  <div class="page-rw">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-rw">
+      <div class="logo">UrStudBud</div>
+      <button class="back-btn-rw" id="rw-back-btn">&#8630;</button>
+    </nav>
+
+    <!-- METHOD TITLE BAR -->
+    <div class="rw-title-bar">
+      <span class="rw-title-label">READING AND WRITING METHOD</span>
+    </div>
+
+    <div class="rw-body">
+
+      <!-- LESSON SECTION -->
+      <div class="rw-section">
+        <h2 class="rw-section-title">LESSON</h2>
+
+        <!-- Drop Zone -->
+        <div class="rw-dropzone" id="rw-dropzone">
+          <div class="rw-dropzone-inner" id="rw-dropzone-inner">
+            <span class="rw-drop-icon">📄</span>
+            <p class="rw-drop-text">Drop your file here or <label for="rw-file-input" class="rw-browse-link">browse</label></p>
+            <p class="rw-drop-sub">Supports .txt, .docx, .pdf</p>
+            <input type="file" id="rw-file-input" accept=".txt,.docx,.pdf" hidden/>
+          </div>
+        </div>
+
+        <!-- Reviewer Output (hidden until file loaded) -->
+        <div class="rw-reviewer-wrap" id="rw-reviewer-wrap" style="display:none;">
+          <div class="rw-reviewer-toolbar">
+            <span class="rw-file-name" id="rw-file-name"></span>
+            <button class="rw-clear-btn" id="rw-clear-btn">✕ Clear</button>
+          </div>
+          <div class="rw-reviewer" id="rw-reviewer"></div>
+        </div>
+
+        <!-- Loading state -->
+        <div class="rw-loading" id="rw-loading" style="display:none;">
+          <div class="rw-spinner"></div>
+          <p>Generating reviewer…</p>
+        </div>
+      </div>
+
+      <!-- LEARNINGS SECTION -->
+      <div class="rw-section">
+        <h2 class="rw-section-title">LEARNINGS / UNDERSTANDING</h2>
+        <textarea class="rw-learnings" id="rw-learnings" placeholder="Write here your learnings in this lesson…"></textarea>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="rw-bottom-bar">
+      <button class="rw-other-btn" id="rw-other-btn">OTHER STUDY METHODS ›</button>
+    </div>
+
+  </div>
+
+  <script>$(document).ready(function() { initReadingWriting(); });</script>
+</body>
+</html>

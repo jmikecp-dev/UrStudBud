@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UrStudBud – About Us</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</head>
+<body>
+
+<div class="page-about">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-rw">
+    <div class="logo">UrStudBud</div>
+    <button class="back-btn-rw" id="about-back-btn">&#8630;</button>
+  </nav>
+
+  <div class="about-hero">
+    <div class="about-overlay"></div>
+
+    <div class="about-scroll">
+
+      <!-- Hero intro -->
+      <div class="about-intro-card">
+        <div class="about-logo-big">UrStudBud</div>
+        <p class="about-tagline">STRENGTHEN MINDS, SHAPE THE FUTURE</p>
+        <p class="about-intro-text">
+          UrStudBud is your personal study companion — designed to help you discover the learning method that works best for <em>you</em>, and then guide you through every study session with the right tools and techniques.
+        </p>
+      </div>
+
+      <!-- What we do -->
+      <div class="about-section-card">
+        <h3 class="about-section-title">📚 WHAT IS URSTUD BUD?</h3>
+        <p class="about-body-text">
+          UrStudBud is a smart study method recommendation web app. Through a short quiz, it identifies your ideal learning style and matches you with one of four proven study methods. Each method comes with its own interactive tools to help you study more effectively.
+        </p>
+      </div>
+
+      <!-- The 4 methods -->
+      <div class="about-section-card">
+        <h3 class="about-section-title">🎯 THE 4 STUDY METHODS</h3>
+        <div class="about-methods-grid">
+          <div class="about-method-item">
+            <div class="about-method-icon">📖</div>
+            <div>
+              <div class="about-method-name">Reading & Writing</div>
+              <div class="about-method-desc">Upload documents, generate reviewers, and write down your learnings as you read.</div>
+            </div>
+          </div>
+          <div class="about-method-item">
+            <div class="about-method-icon">🏆</div>
+            <div>
+              <div class="about-method-name">Practice-Oriented</div>
+              <div class="about-method-desc">Create your own Q&A flashcards, practice answering, and track your score.</div>
+            </div>
+          </div>
+          <div class="about-method-item">
+            <div class="about-method-icon">⏱</div>
+            <div>
+              <div class="about-method-name">Focused Session</div>
+              <div class="about-method-desc">Follow a structured cycle: Plan → Study → Break → Recap → Choose, with live timers.</div>
+            </div>
+          </div>
+          <div class="about-method-item">
+            <div class="about-method-icon">🃏</div>
+            <div>
+              <div class="about-method-name">Spaced Repetition</div>
+              <div class="about-method-desc">Paste reviewer paragraphs and fill in randomly blanked key words to reinforce memory.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="about-section-card">
+        <h3 class="about-section-title">⚡ HOW IT WORKS</h3>
+        <div class="about-steps">
+          <div class="about-step"><span class="about-step-num">1</span><span>Take a short 4-question quiz to identify your learning style.</span></div>
+          <div class="about-step"><span class="about-step-num">2</span><span>Get matched to the study methods that suit you best.</span></div>
+          <div class="about-step"><span class="about-step-num">3</span><span>Jump into your method's interactive tools and start studying!</span></div>
+          <div class="about-step"><span class="about-step-num">4</span><span>Track your sessions and learnings through My Learnings.</span></div>
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div class="about-section-card about-mission-card">
+        <h3 class="about-section-title">💡 OUR MISSION</h3>
+        <p class="about-body-text about-mission-text">
+          "Every student learns differently. UrStudBud exists to help you find <em>your</em> path — and walk it with confidence. We believe that with the right method, every learner can thrive."
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>$(document).ready(function() { initAbout(); });</script>
+</body>
+</html>
