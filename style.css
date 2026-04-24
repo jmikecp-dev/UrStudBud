@@ -240,10 +240,13 @@ html, body {
   letter-spacing: 1.5px;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
-  transition: background 0.2s, transform 0.15s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: none;
+  transform: none !important;
+  opacity: 1 !important;
 }
-.sign-in-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+.sign-in-btn:hover { background: var(--gold); }
+.sign-in-btn:active { background: var(--gold); }
 .no-account {
   text-align: center;
   font-size: 0.73rem;
