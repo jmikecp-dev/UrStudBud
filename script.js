@@ -13,23 +13,146 @@ function initHome() {
   });
 }
 
+// ===== AUTH HELPERS (CI3-style localStorage user store) =====
+function CI_getUsers() {
+  // CodeIgniter 3 style: seed default account + any registered accounts
+  var stored = localStorage.getItem('ci_users_db');
+  var users = stored ? JSON.parse(stored) : [];
+  // Ensure default account always exists (like a CI3 seeder)
+  var hasMek = users.some(function(u){ return u.username === 'mek'; });
+  if (!hasMek) {
+    users.unshift({ name: 'Mek', username: 'mek', email: 'mek@urstud.bud', password: 'password' });
+    localStorage.setItem('ci_users_db', JSON.stringify(users));
+  }
+  return users;
+}
+
+function CI_registerUser(name, username, email, password) {
+  var users = CI_getUsers();
+  users.push({ name: name, username: username.toLowerCase(), email: email.toLowerCase(), password: password });
+  localStorage.setItem('ci_users_db', JSON.stringify(users));
+}
+
+function CI_findUser(identifier, password) {
+  var users = CI_getUsers();
+  identifier = identifier.toLowerCase().trim();
+  return users.find(function(u){
+    return (u.username === identifier || u.email === identifier) && u.password === password;
+  }) || null;
+}
+
+function CI_usernameExists(username) {
+  var users = CI_getUsers();
+  return users.some(function(u){ return u.username === username.toLowerCase().trim(); });
+}
+
+function CI_emailExists(email) {
+  var users = CI_getUsers();
+  return users.some(function(u){ return u.email === email.toLowerCase().trim(); });
+}
+
+function CI_setSession(user) {
+  sessionStorage.setItem('ci_logged_in', JSON.stringify({ name: user.name, username: user.username, email: user.email }));
+}
+
+function CI_getSession() {
+  try { return JSON.parse(sessionStorage.getItem('ci_logged_in')); } catch(e) { return null; }
+}
+
+function CI_destroySession() {
+  sessionStorage.removeItem('ci_logged_in');
+}
+
 // ===== LOGIN PAGE =====
 function initLogin() {
+  CI_getUsers(); // init seed account on first load
+
   $('#back-btn').on('click', function () {
     goTo('index.html');
   });
+
   $('#sign-in-btn').on('click', function () {
+    var identifier = $('#email-input').val().trim();
+    var password   = $('#password-input').val();
+    var $err = $('#login-error-msg');
+
+    if (!identifier || !password) {
+      $err.text('Please enter your username/email and password.').show();
+      return;
+    }
+
+    var user = CI_findUser(identifier, password);
+    if (!user) {
+      $err.text('Invalid username or password. Please try again.').show();
+      $('#password-input').val('');
+      return;
+    }
+
+    $err.hide();
+    CI_setSession(user);
     goTo('ready.html');
   });
+
   $('#google-btn').on('click', function () {
     alert('Google Sign-in coming soon!');
   });
   $('#facebook-btn').on('click', function () {
     alert('Facebook Sign-in coming soon!');
   });
-  $('#signup-link').on('click', function (e) {
-    e.preventDefault();
-    alert('Sign Up page coming soon!');
+
+  // Allow pressing Enter to submit
+  $('#email-input, #password-input').on('keydown', function(e){
+    if (e.key === 'Enter') $('#sign-in-btn').trigger('click');
+  });
+}
+
+// ===== SIGNUP PAGE =====
+function initSignup() {
+  CI_getUsers(); // ensure DB exists
+
+  $('#back-btn').on('click', function () {
+    goTo('login.html');
+  });
+
+  function clearErrors() {
+    $('.signup-error').hide();
+    $('input').removeClass('input-error');
+  }
+
+  function showErr(id, inputId) {
+    $('#' + id).show();
+    if (inputId) $('#' + inputId).addClass('input-error');
+  }
+
+  $('#create-btn').on('click', function () {
+    clearErrors();
+    var name     = $('#su-name').val().trim();
+    var username = $('#su-username').val().trim();
+    var email    = $('#su-email').val().trim();
+    var password = $('#su-password').val();
+    var confirm  = $('#su-confirm').val();
+    var valid    = true;
+
+    if (!name)                            { showErr('err-name', 'su-name');         valid = false; }
+    if (!username)                        { showErr('err-username', 'su-username'); valid = false; }
+    else if (CI_usernameExists(username)) { showErr('err-username-taken', 'su-username'); valid = false; }
+    if (!email || !/\S+@\S+\.\S+/.test(email)) { showErr('err-email', 'su-email'); valid = false; }
+    else if (CI_emailExists(email))       { showErr('err-email-taken', 'su-email'); valid = false; }
+    if (!password || password.length < 6) { showErr('err-password', 'su-password'); valid = false; }
+    if (password !== confirm)             { showErr('err-confirm', 'su-confirm');   valid = false; }
+
+    if (!valid) return;
+
+    CI_registerUser(name, username, email, password);
+    $('#signup-success-msg').show();
+    $('#create-btn').prop('disabled', true).text('ACCOUNT CREATED!');
+
+    setTimeout(function(){ goTo('login.html'); }, 1800);
+  });
+
+  // Enter key support
+  $('#su-name, #su-username, #su-email, #su-password, #su-confirm').on('keydown', function(e){
+    if (e.key === 'Enter') $('#create-btn').trigger('click');
   });
 }
 
@@ -70,6 +193,9 @@ function getSessionById(id) {
 
 
 function initReady() {
+  // CI3-style session guard: redirect to login if not authenticated
+  if (!CI_getSession()) { goTo("login.html"); return; }
+
   $('#yes-btn').on('click', function () {
     goTo('quiz.html');
   });
