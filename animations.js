@@ -22,7 +22,7 @@
     /* ─── 2. RIPPLE ON CLICK ─────────────────────────────────
        Material-style expanding circle from exact click point  */
     var RIPPLE_TARGETS = [
-      '.cta-btn', '.sign-in-btn', '.po-start-btn',
+      '.cta-btn', '.po-start-btn',
       '.po-submit-answer-btn', '.po-next-btn',
       '.po-retry-btn', '.po-edit-btn',
       '.fs-next-phase-btn', '.ml-modal-retry-btn',
@@ -143,17 +143,7 @@
       $('body').removeClass('kb-nav');
     });
 
-    /* ─── 7. BUTTON PRESS SCALE ──────────────────────────────
-       Universal active-state scale for satisfying click feel  */
-    $(document).on('mousedown touchstart', 'button, .menu-card, .result-item, .fs-choose-card, .ml-history-card', function () {
-      $(this).css('transition', 'transform 80ms ease');
-      $(this).css('transform', 'scale(0.96)');
-    });
-    $(document).on('mouseup touchend mouseleave', 'button, .menu-card, .result-item, .fs-choose-card, .ml-history-card', function () {
-      var $el = $(this);
-      // Let CSS animation handle the "release" spring
-      setTimeout(function () { $el.css('transform', ''); }, 20);
-    });
+    /* ─── 7. BUTTON PRESS SCALE — REMOVED ──────────────────── */
 
     /* ─── 8. QUIZ ANSWER TOGGLE ANIMATION ───────────────────
        Pop feedback when YES/NO toggled                        */
